@@ -1,7 +1,7 @@
 import { EnumType } from "typescript";
 
 interface IRacun {
-    racun: {
+    racuni: {
         id: number,
         broj_racuna: string,
         redni_broj_racuna: number,
@@ -15,7 +15,7 @@ interface IRacun {
         porez?: number,
         iznos_poreza?: number,
         cijena_s_porezom: number
-    }
+    }[]
 }
 
 export default IRacun
