@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ListaRacuna from './Components/ListaRacuna/ListaRacuna';
+import IRacun from "./Interface"
 
 function App() {
+
+  const [racuni, setRacuni] = useState<IRacun["racuni"]>([{
+    id: 100,
+    broj_racuna: "test 01",
+    redni_broj_racuna: 1,
+    smjer: true,
+    datum_racuna: new Date('May 04, 2021'),
+    rok_placanja: new Date('March 03, 2022'),
+    naziv_partnera: "Poduzece d.o.o.",
+    adresa_partnera: "",
+    oib: '02325566821',
+    iznos_prije_poreza: 2000,
+    porez: 25,
+    iznos_poreza: 500,
+    cijena_s_porezom: 2500
+  }])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListaRacuna racuni={racuni} />
     </div>
   );
 }
