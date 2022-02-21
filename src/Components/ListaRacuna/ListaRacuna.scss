@@ -8,7 +8,8 @@
     }
 
     &__link {
-        text-decoration: none;
         color: black;
+        border: none;
+        cursor: pointer;
     }
 }

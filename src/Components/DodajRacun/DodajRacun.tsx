@@ -122,7 +122,9 @@ const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
                     <div className="Input"><p>Poslovni partner: </p><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /></div>
                 </div>
                 <div className="DodajRacun--col right">
+                    <p>Odaberi datum otvaranja računa:</p>
                     <Calendar onChange={otvoriRacun} value={date1} />
+                    <p>Rok plaćanja računa:</p>
                     <Calendar onChange={zatvoriRacun} value={date2} />
                 </div>
             </div>

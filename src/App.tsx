@@ -7,6 +7,8 @@ import ListaRacuna from './Components/ListaRacuna/ListaRacuna';
 import IRacun from './Interface';
 
 function App() {
+  
+  //testni podaci
   const [racuni, setRacuni] = useState<IRacun["racuni"]>([{
     id: 2,
     broj_racuna: "test 01",

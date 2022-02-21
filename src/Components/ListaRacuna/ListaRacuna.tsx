@@ -1,12 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link as button } from "react-router-dom"
 import IRacun from "../../Interface"
+import DetaljiRacuna from "../DetaljiRacuna/DetaljiRacuna"
 import "./ListaRacuna.scss"
 
 const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
+
+    // const otvoriDetalje=(racun:IRacun["racuni"])=>{
+    //     return(
+    //         <DetaljiRacuna racun={racun} />
+    //     )
+    // }
+
     return (
-        <table className="Lista">
-            <tbody>
-            <tr>
+        <table className="Lista sortable">
+            <thead>
+                <tr>
                 <th>ID računa</th>
                 <th>Broj računa</th>
                 <th>Redni broj računa</th>
@@ -15,16 +23,20 @@ const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
                 <th>Partner</th>
                 <th>Cijena s porezom</th>
                 <th>Dodatne aktivnosti</th>
-            </tr>
+                </tr>
+            </thead>
+            <tbody>
             {racuni.map(racun =>
                 <tr key={racun.id}>
-                    <td><Link className="Lista__link" to="/detalji">{racun.id}</Link></td>
-                    <td><Link className="Lista__link" to="/detalji">{racun.broj_racuna}</Link></td>
-                    <td><Link className="Lista__link" to="/detalji">{racun.redni_broj_racuna}</Link></td>
-                    <td><Link className="Lista__link" to="/detalji">{racun.smjer}</Link></td>
-                    <td><Link className="Lista__link" to="/detalji">{racun.datum_racuna.toLocaleDateString()}</Link></td>
-                    <td><Link className="Lista__link" to="/detalji">{racun.naziv_partnera}</Link></td>
-                    <td><Link className="Lista__link" to="/detalji">{racun.cijena_s_porezom} kn</Link></td>
+                    <td><button 
+                    // onClick={otvoriDetalje(racun)} 
+                    className="Lista__link">{racun.id}</button></td>
+                    <td><button className="Lista__link">{racun.broj_racuna}</button></td>
+                    <td><button className="Lista__link">{racun.redni_broj_racuna}</button></td>
+                    <td><button className="Lista__link">{racun.smjer}</button></td>
+                    <td><button className="Lista__link">{racun.datum_racuna.toLocaleDateString()}</button></td>
+                    <td><button className="Lista__link">{racun.naziv_partnera}</button></td>
+                    <td><button className="Lista__link">{racun.cijena_s_porezom} kn</button></td>
                     <td><button className="Lista--btn">Uredi</button><button className="Lista--btn" onClick={()=>{racuni.splice(racun.redni_broj_racuna); console.log(racun)}}>Obriši</button></td>
                 </tr>
             )}</tbody>

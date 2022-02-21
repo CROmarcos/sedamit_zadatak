@@ -4,11 +4,10 @@ interface IProps {
     racuni: IRacun["racuni"]
 }
 
-const DetaljiRacuna=(racunId: number)=>{
-    
+const DetaljiRacuna=(racun:IRacun["racuni"])=>{
     return(
         <div>
-            <p>ID računa: </p>
+            {/* <p>ID računa: {racun.id}</p> */}
         </div>
     )
 }
