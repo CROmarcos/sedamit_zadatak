@@ -11,7 +11,14 @@ const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
     //     )
     // }
 
+    let ukupno=0;
+
+    racuni.forEach(racun => {
+        ukupno+=racun.cijena_s_porezom
+    });
+
     return (
+        <>
         <table className="Lista sortable">
             <thead>
                 <tr>
@@ -41,6 +48,8 @@ const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
                 </tr>
             )}</tbody>
         </table>
+        <h3>Ukupan iznos računa: </h3><p>{ukupno} kn</p>
+        </>
     )
 }
 
