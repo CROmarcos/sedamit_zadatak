@@ -36,3 +36,29 @@ input {
 .right {
     float: right;
 }
+
+.react-calendar {
+    background-color: silver;
+    margin: 10px;
+    border: 1px solid black;
+
+    &__navigation {
+
+        &__arrow {
+            width: 25px;
+        }
+    }
+
+    &__tile {
+        width: 30px;
+    }
+
+    &__month-view__weekdays {
+        display: none;
+    }
+
+    button {
+        margin: 2px;
+        border: none;
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import IRacun from "../../Interface"
 import "./DodajRacun.scss"
+import Calendar from "react-calendar";
 
 interface IProps {
     setRacuni: React.Dispatch<React.SetStateAction<IRacun["racuni"]>>
@@ -10,6 +11,12 @@ interface IProps {
 let brojac = 1;
 
 const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
+
+    //Datum izdavanja računa
+    const [date1, setDate1]=useState(new Date())
+
+    //Datum roka plaćanja
+    const [date2, setDate2]=useState(new Date())
 
     let iznosPoreza = 0;
     let cijenaSPorezom = 0;
@@ -48,8 +55,8 @@ const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
                 broj_racuna: input.broj_racuna,
                 redni_broj_racuna: brojac,
                 smjer: "ulazno",
-                datum_racuna: new Date('May 04, 2021'),
-                rok_placanja: new Date('May 07, 2021'),
+                datum_racuna: date1,
+                rok_placanja: date2,
                 naziv_partnera: input.naziv_partnera,
                 adresa_partnera: input.adresa_partnera,
                 oib: input.oib,
@@ -92,16 +99,21 @@ const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
         }
     }
 
+    function otvoriRacun(datum:Date){
+        setDate1(datum)
+        console.log(datum)
+    }
+
+    function zatvoriRacun(datum:Date){
+        setDate2(datum)
+        console.log(datum)
+    }
+
     return (
         <div>
             <div className="DodajRacun">
                 <div className="DodajRacun--col left">
                     <div className="Input"><p>Broj računa: </p><input type="text" name="broj_racuna" value={input.broj_racuna} onChange={handleChange} /></div>
-                    <div className="Input"><p>Datum otvaranja računa: </p><input type="date" name="datum_racuna" /></div>
-                    <div className="Input"><p>Rok plaćanja: </p><input type="date" name="rok_placanja" /></div>
-                    <div className="Input"><p>Poslovni partner: </p><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /></div>
-                </div>
-                <div className="DodajRacun--col right">
                     <div className="Input"><p>Adresa poslovnog partnera: </p><input type="text" name="adresa_partnera" value={input.adresa_partnera} onChange={handleChange} /></div>
                     <div className="Input--RB">
                         <input className="RadioButton" type="radio" id="ulazno" name="smjer" value={input.smjer} onClick={prikaziOib} checked={true} /><label>Ulazni račun</label>
@@ -110,6 +122,11 @@ const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
                     <div className="Input" id="input_oib"><p>OIB: </p><input type="text" name="oib" value={input.oib} onChange={handleChange} /></div>
                     <div className="Input"><p>Iznos prije poreza (kn): </p><input type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /></div>
                     <div className="Input"><p>Porez (%): </p><input type="text" name="porez" value={input.porez} onChange={handleChange} /></div>
+                    <div className="Input"><p>Poslovni partner: </p><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /></div>
+                </div>
+                <div className="DodajRacun--col right">
+                    <Calendar onChange={otvoriRacun} value={date1} />
+                    <Calendar onChange={zatvoriRacun} value={date2} />
                 </div>
             </div>
             <button onClick={spremiRacun}>Podnesi račun</button>
