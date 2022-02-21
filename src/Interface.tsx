@@ -5,7 +5,7 @@ interface IRacun {
         id: number,
         broj_racuna: string,
         redni_broj_racuna: number,
-        smjer: boolean | EnumType | string,
+        smjer: boolean |string,
         datum_racuna: Date,
         rok_placanja?: Date,
         naziv_partnera: string,
