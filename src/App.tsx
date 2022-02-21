@@ -84,8 +84,7 @@ function App() {
       </div>
       <div id='dodaj' className='Dodaj'>
         <DodajRacun racuni={racuni} setRacuni={setRacuni} />
-        <button onClick={prikaziPopis}>Spremi račun</button>
-        <button onClick={prikaziPopis}>Odustani</button>
+        <button onClick={prikaziPopis}>Vrati se na popis</button>
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
 import IRacun from "../../Interface"
 
 interface IProps {
-    racun: IRacun["racuni"]
+    racuni: IRacun["racuni"]
 }
 
-const DetaljiRacuna=({racun}: IProps)=>{
+const DetaljiRacuna=(racunId: number)=>{
+    
     return(
-        <div></div>
+        <div>
+            <p>ID računa: </p>
+        </div>
     )
 }
 
