@@ -1,0 +1,22 @@
+.DodajRacun {
+    &__izracun {
+        visibility: hidden;
+    }
+}
+
+input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+
+    &--RB {
+        display: inline;
+        font-size: small;
+    }
+}
+
+.RadioButton {
+    width: 15px;
+    height: 15px;
+    margin: 5;
+}

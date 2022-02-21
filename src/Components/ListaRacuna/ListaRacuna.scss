@@ -1,3 +1,9 @@
 .Lista {
-    width: auto;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid;
+
+    &--btn {
+        width: 50px;
+    }
 }
