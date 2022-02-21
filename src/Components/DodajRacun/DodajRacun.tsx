@@ -82,7 +82,6 @@ const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
             cijena_s_porezom: ""
         })
         brojac++
-        console.log("Brojač: ", brojac)
     }
 
     function prikaziOib(){
@@ -101,12 +100,10 @@ const DodajRacun: React.FC<IProps> = ({ racuni, setRacuni }) => {
 
     function otvoriRacun(datum:Date){
         setDate1(datum)
-        console.log(datum)
     }
 
     function zatvoriRacun(datum:Date){
         setDate2(datum)
-        console.log(datum)
     }
 
     return (
