@@ -25,10 +25,10 @@ const Pocetna = () => {
     return (
         <div>
             <h1>Početna</h1>
-            {/* <ListaRacuna />
+            <ListaRacuna />
             <Link to="/noviracun">
                 <button>Dodaj novi račun</button>
-            </Link> */}
+            </Link>
         </div>
     )
 }
