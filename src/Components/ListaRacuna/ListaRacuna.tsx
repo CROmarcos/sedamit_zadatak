@@ -3,7 +3,7 @@ import IRacun from "../../Interface"
 const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
     return (
         <li className="Lista">
-            {racuni.map(racun =>
+            {/* {racuni.map(racun =>
                 <ul>
                     <p>Id računa: {racun.id}</p>
                     <p>Broj računa: {racun.broj_racuna}</p>
@@ -13,7 +13,7 @@ const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
                     <p>Partner: {racun.naziv_partnera}</p>
                     <p>Cijena s porezom: {racun.cijena_s_porezom} kn</p>
                 </ul>
-            )}
+            )} */}
         </li>
     )
 }

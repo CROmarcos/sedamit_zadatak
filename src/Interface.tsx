@@ -15,7 +15,7 @@ interface IRacun {
         porez?: number,
         iznos_poreza?: number,
         cijena_s_porezom: number
-    }[]
+    }
 }
 
 export default IRacun
