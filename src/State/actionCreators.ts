@@ -7,11 +7,11 @@ export const dodajRacun = (payload: IRacun["racuni"]) => ({
 })
 
 export const urediRacun = (payload: IRacun["racuni"]) => ({
-    type: ActionType.DODAJ,
+    type: ActionType.UREDI,
     payload
 })
 
 export const obrisiRacun = (payload: number) => ({
-    type: ActionType.DODAJ,
+    type: ActionType.OBRISI,
     payload
 })
