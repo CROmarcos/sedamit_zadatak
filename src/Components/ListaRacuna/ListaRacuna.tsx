@@ -1,10 +1,13 @@
+import { useState } from "react"
 import IRacun from "../../Interface"
+import store from "../../State/store"
 
-const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
+const ListaRacuna = () => {
+    const [polje, setPolje] = useState(store.getState())
     return (
         <li className="Lista">
-            {/* {racuni.map(racun =>
-                <ul>
+            {polje.map(racun =>
+                <ul key={racun.id}>
                     <p>Id računa: {racun.id}</p>
                     <p>Broj računa: {racun.broj_racuna}</p>
                     <p>Redni broj računa: {racun.redni_broj_racuna}</p>
@@ -13,7 +16,7 @@ const ListaRacuna: React.FC<IRacun> = ({ racuni }) => {
                     <p>Partner: {racun.naziv_partnera}</p>
                     <p>Cijena s porezom: {racun.cijena_s_porezom} kn</p>
                 </ul>
-            )} */}
+            )}
         </li>
     )
 }
