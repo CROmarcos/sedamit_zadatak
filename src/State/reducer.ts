@@ -1,3 +1,4 @@
+import { combineReducers } from "redux"
 import IRacun from "../Interface"
 import { Action } from "./actions"
 import { ActionType } from "./actionTypes"
@@ -58,10 +59,16 @@ const reducer = (state: IRacun["racuni"][] = initialState, action: Action) => {
         case ActionType.UREDI:
             return state.map(racun => racun.id === action.payload.id ? action.payload : racun)
         case ActionType.OBRISI:
-            return state.filter(racun => racun.id != action.payload)
+            return state.filter(racun => racun.id !== action.payload)
         default:
             return state
     }
 }
 
-export default reducer
+const reducers = combineReducers({
+    reducer
+})
+
+export default reducers
+
+export type State = ReturnType<typeof reducers>
