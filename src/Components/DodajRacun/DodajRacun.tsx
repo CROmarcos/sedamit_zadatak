@@ -3,15 +3,15 @@ import IRacun from "../../Interface"
 import "./DodajRacun.scss"
 
 const DodajRacun = () => {
-    
+
     let iznosPoreza = 0;
     let cijenaSPorezom = 0;
 
     //Datum izdavanja računa
-    const [date1, setDate1]=useState(new Date())
+    const [dateStart, setDateStart] = useState(new Date())
 
     //Datum roka plaćanja
-    const [date2, setDate2]=useState(new Date())
+    const [dateEnd, setDateEnd] = useState(new Date())
 
     const [input, setInput] = useState({
         id: "",
@@ -50,11 +50,17 @@ const DodajRacun = () => {
         }
     }
 
-    function dtStart(){
-        //datum=document.getElementById("dt-start").value
+    function dtStart() {
+        let dt: Date = new Date((document.getElementById("dt-start") as HTMLInputElement).value)
+        setDateStart(dt)
     }
 
-    function izracunajPorez(){
+    function dtEnd() {
+        let dt: Date = new Date((document.getElementById("dt-end") as HTMLInputElement).value)
+        setDateEnd(dt)
+    }
+
+    function izracunajPorez() {
 
     }
 
@@ -72,8 +78,8 @@ const DodajRacun = () => {
                     <div className="Input" id="input_oib"><label>OIB poslovnog partnera: </label><input type="text" name="oib" value={input.oib} onChange={handleChange} /></div>
                 </div>
                 <div className="Unos__stupac right">
-                    <div className="Input"><label>Datum otvaranja računa: </label><input id="dt-start" className="Datum" type="date" name="datum_racuna" /></div>
-                    <div className="Input"><label>Rok plaćanja: </label><input id="dt-end" className="Datum" type="date" name="rok_placanja" /></div>
+                    <div className="Input"><label>Datum otvaranja računa: </label><input id="dt-start" className="Datum" type="date" name="datum_racuna" onSelect={dtStart} /></div>
+                    <div className="Input"><label>Rok plaćanja: </label><input id="dt-end" className="Datum" type="date" name="rok_placanja" onSelect={dtEnd} /></div>
                     <div className="Input"><label>Iznos prije poreza (kn): </label><input type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /></div>
                     <div className="Input"><label>Porez (%): </label><input type="text" name="porez" value={input.iznos_poreza} onChange={handleChange} /></div>
                 </div>
