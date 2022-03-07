@@ -1,9 +1,10 @@
 import DodajRacun from "../Components/DodajRacun/DodajRacun"
+import Naslov from "../Components/Naslov/Naslov"
 
 const NoviRacun = () => {
     return (
         <div>
-            <h2>Napravi novi račun:</h2>
+            <Naslov naslov="Napravi novi račun" />
             <DodajRacun />
         </div>
     )

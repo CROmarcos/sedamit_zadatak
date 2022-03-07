@@ -2,8 +2,8 @@ interface IProps {
     naslov: string
 }
 
-const Naslov=({naslov}: IProps)=>{
-    return(
+const Naslov = ({ naslov }: IProps) => {
+    return (
         <h1 className="Naslov">{naslov}</h1>
     )
 }

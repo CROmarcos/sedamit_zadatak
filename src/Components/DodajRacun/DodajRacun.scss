@@ -1,0 +1,51 @@
+.Unos {
+    width: 100%;
+    overflow: hidden;
+
+    &__stupac {
+        width: 50%;
+        margin: 0;
+        justify-items: right;
+    }
+
+    &__actions {
+        width: 100%;
+    }
+}
+
+.Input {
+    margin: auto;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    align-self: right;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.RadioButton {
+    width: 15px;
+    height: 15px;
+    margin-left: 15px;
+}
+
+.RB {
+    display: inline;
+    font-size: small;
+}
+
+input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.Datum {
+    width: 150px;
+}
