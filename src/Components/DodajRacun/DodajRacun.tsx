@@ -1,8 +1,17 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import IRacun from "../../Interface"
+import { dodajRacun } from "../../State/actionCreators";
+import * as actionCreators from "../../State/actionCreators"
+import store from "../../State/store";
 import "./DodajRacun.scss"
 
 const DodajRacun = () => {
+
+    const dispatch = useDispatch()
+    const { dodajRacun } = bindActionCreators(actionCreators, dispatch)
 
     let iznosPoreza = 0;
     let cijenaSPorezom = 0;
@@ -96,7 +105,24 @@ const DodajRacun = () => {
             </div>
             <div className="Unos__actions">
                 <button onClick={izracunajPorez}>Izračunaj porez</button>
-                <button>Podnesi račun</button>
+                <Link to="/">
+                    <button onClick={() => dodajRacun({
+                        id: Date.now(),
+                        broj_racuna: input.broj_racuna,
+                        redni_broj_racuna: 55,
+                        smjer: false,
+                        datum_racuna: dateStart,
+                        rok_placanja: dateEnd,
+                        naziv_partnera: input.naziv_partnera,
+                        adresa_partnera: input.adresa_partnera,
+                        oib: '',
+                        iznos_prije_poreza: parseFloat(input.iznos_prije_poreza),
+                        porez: parseFloat(input.porez),
+                        iznos_poreza: iznosPoreza,
+                        cijena_s_porezom: cijenaSPorezom
+                    })}>Podnesi račun</button>
+                </Link>
+                <Link to="/"><button>Odustani</button></Link>
             </div>
         </div>
     )
