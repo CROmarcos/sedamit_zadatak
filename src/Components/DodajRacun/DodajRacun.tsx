@@ -6,6 +6,8 @@ const DodajRacun = () => {
 
     let iznosPoreza = 0;
     let cijenaSPorezom = 0;
+    const [iznosPorezaText, setIznos] = useState('')
+    const [cijenaSPorezomText, setCijena] = useState('')
 
     //Datum izdavanja računa
     const [dateStart, setDateStart] = useState(new Date())
@@ -61,7 +63,11 @@ const DodajRacun = () => {
     }
 
     function izracunajPorez() {
-
+        let cijena = parseFloat((document.getElementById("cijena") as HTMLInputElement).value)
+        iznosPoreza = parseFloat((document.getElementById("porez") as HTMLInputElement).value) * cijena / 100
+        cijenaSPorezom = cijena + iznosPoreza
+        setIznos("Iznos poreza: " + iznosPoreza.toString() + " kn")
+        setCijena("Ukupan iznos: " + cijenaSPorezom.toString() + " kn")
     }
 
     return (
@@ -80,9 +86,13 @@ const DodajRacun = () => {
                 <div className="Unos__stupac right">
                     <div className="Input"><label>Datum otvaranja računa: </label><input id="dt-start" className="Datum" type="date" name="datum_racuna" onSelect={dtStart} /></div>
                     <div className="Input"><label>Rok plaćanja: </label><input id="dt-end" className="Datum" type="date" name="rok_placanja" onSelect={dtEnd} /></div>
-                    <div className="Input"><label>Iznos prije poreza (kn): </label><input type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /></div>
-                    <div className="Input"><label>Porez (%): </label><input type="text" name="porez" value={input.iznos_poreza} onChange={handleChange} /></div>
+                    <div className="Input"><label>Iznos prije poreza (kn): </label><input id="cijena" type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /></div>
+                    <div className="Input"><label>Porez (%): </label><input id="porez" type="text" name="porez" value={input.porez} onChange={handleChange} /></div>
                 </div>
+            </div>
+            <div className="Unos__porez">
+                <p>{iznosPorezaText}</p>
+                <p>{cijenaSPorezomText}</p>
             </div>
             <div className="Unos__actions">
                 <button onClick={izracunajPorez}>Izračunaj porez</button>
