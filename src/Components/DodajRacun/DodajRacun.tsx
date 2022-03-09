@@ -2,10 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import IRacun from "../../Interface"
-import { dodajRacun } from "../../State/actionCreators";
 import * as actionCreators from "../../State/actionCreators"
-import store from "../../State/store";
 import "./DodajRacun.scss"
 
 const DodajRacun = () => {
@@ -15,6 +12,7 @@ const DodajRacun = () => {
 
     let iznosPoreza = 0;
     let cijenaSPorezom = 0;
+
     const [iznosPorezaText, setIznos] = useState('')
     const [cijenaSPorezomText, setCijena] = useState('')
 
@@ -25,19 +23,14 @@ const DodajRacun = () => {
     const [dateEnd, setDateEnd] = useState(new Date())
 
     const [input, setInput] = useState({
-        id: "",
         broj_racuna: "",
         redni_broj_racuna: "",
         smjer: "",
-        datum_racuna: new Date(),
-        rok_placanja: new Date(),
         naziv_partnera: "",
         adresa_partnera: "",
         oib: '',
         iznos_prije_poreza: "",
-        porez: "",
-        iznos_poreza: "",
-        cijena_s_porezom: ""
+        porez: ""
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +52,7 @@ const DodajRacun = () => {
         if (x) {
             x.style.visibility = "hidden"
         }
+        input.oib=""
     }
 
     function dtStart() {
@@ -77,6 +71,7 @@ const DodajRacun = () => {
         cijenaSPorezom = cijena + iznosPoreza
         setIznos("Iznos poreza: " + iznosPoreza.toString() + " kn")
         setCijena("Ukupan iznos: " + cijenaSPorezom.toString() + " kn")
+        console.log(cijenaSPorezom)
     }
 
     return (
@@ -87,8 +82,8 @@ const DodajRacun = () => {
                     <div className="Input"><label>Poslovni partner: </label><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /></div>
                     <div className="Input"><label>Adresa poslovnog partnera: </label><input type="text" name="adresa_partnera" value={input.adresa_partnera} onChange={handleChange} /></div>
                     <div className="Input">
-                        <input className="RadioButton" type="radio" id="ulazno" name="smjer" onClick={prikaziOib} checked /><label>Ulazni račun</label>
-                        <input className="RadioButton" type="radio" id="izlazno" name="smjer" onClick={sakrijOib} /><label>Izlazni račun</label>
+                        <input className="RadioButton" type="radio" id="ulazno" name="smjer" value="ulazni račun" onClick={prikaziOib} checked /><label>Ulazni račun</label>
+                        <input className="RadioButton" type="radio" id="izlazno" name="smjer" value="izlazni račun" onClick={sakrijOib} /><label>Izlazni račun</label>
                     </div>
                     <div className="Input" id="input_oib"><label>OIB poslovnog partnera: </label><input type="text" name="oib" value={input.oib} onChange={handleChange} /></div>
                 </div>
@@ -110,12 +105,12 @@ const DodajRacun = () => {
                         id: Date.now(),
                         broj_racuna: input.broj_racuna,
                         redni_broj_racuna: 55,
-                        smjer: false,
+                        smjer: (document.querySelector('input[name="smjer"]:checked') as HTMLInputElement).value.toString(),
                         datum_racuna: dateStart,
                         rok_placanja: dateEnd,
                         naziv_partnera: input.naziv_partnera,
                         adresa_partnera: input.adresa_partnera,
-                        oib: '',
+                        oib: input.oib,
                         iznos_prije_poreza: parseFloat(input.iznos_prije_poreza),
                         porez: parseFloat(input.porez),
                         iznos_poreza: iznosPoreza,
