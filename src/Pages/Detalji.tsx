@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
-import Naslov from "../Components/Naslov/Naslov"
+import PopisDetalja from "../Components/PopisDetalja/PopisDetalja"
 
 const Detalji = () => {
     return (
         <div>
-            <Naslov naslov="Račun br." />
+            <PopisDetalja />
             <Link to="/">
                 <button>Vrati se natrag</button>
             </Link>

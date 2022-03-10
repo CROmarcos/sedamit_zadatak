@@ -5,6 +5,7 @@ import store from "../../State/store"
 import "./ListaRacuna.scss"
 import * as actionCreators from "../../State/actionCreators"
 import { State } from "../../State/reducer"
+import { Link } from "react-router-dom"
 
 const ListaRacuna = () => {
     const dispatch = useDispatch()
@@ -28,15 +29,13 @@ const ListaRacuna = () => {
             <tbody>
                 {polje.map(racun =>
                     <tr key={racun.id}>
-                        <td><button
-                            // onClick={otvoriDetalje(racun)} 
-                            className="Lista__link">{racun.id}</button></td>
-                        <td><button className="Lista__link">{racun.broj_racuna}</button></td>
-                        <td><button className="Lista__link">{racun.redni_broj_racuna}</button></td>
-                        <td><button className="Lista__link">{racun.smjer}</button></td>
-                        <td><button className="Lista__link">{racun.datum_racuna.toLocaleDateString()}</button></td>
-                        <td><button className="Lista__link">{racun.naziv_partnera}</button></td>
-                        <td><button className="Lista__link">{racun.cijena_s_porezom} kn</button></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.id}</button></Link></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.broj_racuna}</button></Link></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.redni_broj_racuna}</button></Link></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.smjer}</button></Link></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.datum_racuna.toLocaleDateString()}</button></Link></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.naziv_partnera}</button></Link></td>
+                        <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.cijena_s_porezom} kn</button></Link></td>
                         <td>
                             <button className="Lista--btn">Uredi</button>
                             <button className="Lista--btn" onClick={() => { obrisiRacun(racun.id); }}>Obriši</button>
