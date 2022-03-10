@@ -52,7 +52,7 @@ const DodajRacun = () => {
         if (x) {
             x.style.visibility = "hidden"
         }
-        input.oib=""
+        input.oib = ""
     }
 
     function dtStart() {
@@ -62,7 +62,14 @@ const DodajRacun = () => {
 
     function dtEnd() {
         let dt: Date = new Date((document.getElementById("dt-end") as HTMLInputElement).value)
-        setDateEnd(dt)
+        if (dateStart > dt) {
+            alert("Datum zatvaranja ugovora ne može biti prije datuma otvaranja!");
+            (document.getElementById("dt-end") as HTMLInputElement).value=''
+            setDateEnd(dateStart)            
+        }
+        else {
+            setDateEnd(dt)
+        }
     }
 
     function izracunajPorez() {
