@@ -1,4 +1,4 @@
-import "./Naslov.css"
+import "./Naslov.scss"
 
 interface IProps {
     naslov: string

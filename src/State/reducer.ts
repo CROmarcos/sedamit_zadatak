@@ -12,12 +12,12 @@ const initialState: IRacun["racuni"][] = [
         datum_racuna: new Date('May 04, 2021'),
         rok_placanja: new Date('March 03, 2022'),
         naziv_partnera: "Poduzece d.o.o.",
-        adresa_partnera: "",
+        adresa_partnera: "Anina 10, Varaždin",
         oib: '02325566821',
-        iznos_prije_poreza: 2000,
-        porez: 25,
-        iznos_poreza: 500,
-        cijena_s_porezom: 2500
+        iznos_prije_poreza: 1000,
+        porez: 12,
+        iznos_poreza: 120,
+        cijena_s_porezom: 1120
     }, {
         id: 2527,
         broj_racuna: "test 01",
@@ -40,12 +40,12 @@ const initialState: IRacun["racuni"][] = [
         datum_racuna: new Date('May 14, 2021'),
         rok_placanja: new Date('March 13, 2022'),
         naziv_partnera: "Poduzece3 d.o.o.",
-        adresa_partnera: "",
+        adresa_partnera: "Grada Vukovara 13, Zagreb",
         oib: '',
-        iznos_prije_poreza: 2000,
+        iznos_prije_poreza: 200,
         porez: 25,
-        iznos_poreza: 500,
-        cijena_s_porezom: 2500
+        iznos_poreza: 50,
+        cijena_s_porezom: 250
     }
 ]
 

@@ -1,0 +1,19 @@
+.Popis {
+    width: 400px;
+    margin: auto;
+
+    &__red {
+        width: 100%;
+        margin-bottom: 15px;
+        display: flex;
+    }
+
+    &__label {
+        font-weight: bold;
+        justify-self: left;
+    }
+
+    span {
+        margin-left: 5px;
+    }
+}
