@@ -1,10 +1,14 @@
+import "./Naslov.css"
+
 interface IProps {
     naslov: string
 }
 
 const Naslov = ({ naslov }: IProps) => {
     return (
-        <h1 className="Naslov">{naslov}</h1>
+        <div className="App-header">
+            <p className="Naslov">{naslov}</p>
+        </div>
     )
 }
 

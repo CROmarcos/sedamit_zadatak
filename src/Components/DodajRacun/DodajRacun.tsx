@@ -58,14 +58,17 @@ const DodajRacun = () => {
     function dtStart() {
         let dt: Date = new Date((document.getElementById("dt-start") as HTMLInputElement).value)
         setDateStart(dt)
+        if (dateStart > dateEnd) {
+            alert("Molimo pomaknite datum zatvaranja ugovora!");
+            (document.getElementById("dt-end") as HTMLInputElement).value = ''
+        }
     }
 
     function dtEnd() {
         let dt: Date = new Date((document.getElementById("dt-end") as HTMLInputElement).value)
         if (dateStart > dt) {
             alert("Datum zatvaranja ugovora ne može biti prije datuma otvaranja!");
-            (document.getElementById("dt-end") as HTMLInputElement).value=''
-            setDateEnd(dateStart)            
+            (document.getElementById("dt-end") as HTMLInputElement).value = ''
         }
         else {
             setDateEnd(dt)
