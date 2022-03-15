@@ -132,28 +132,6 @@ const DodajRacun = () => {
                         }>Podnesi račun</button>
                     </Link>
                 }
-
-                {/* <Link to="/">
-                    <button onClick={() =>
-                        (!input.broj_racuna || !input.naziv_partnera || !input.iznos_prije_poreza || !dateStart) ?
-                            alert("Niste ispunili vrijednosti označene znakom *!")
-                            : dodajRacun({
-                                id: Date.now(),
-                                broj_racuna: input.broj_racuna,
-                                redni_broj_racuna: 55,
-                                smjer: (document.querySelector('input[name="smjer"]:checked') as HTMLInputElement).value.toString(),
-                                datum_racuna: dateStart,
-                                rok_placanja: dateEnd,
-                                naziv_partnera: input.naziv_partnera,
-                                adresa_partnera: input.adresa_partnera,
-                                oib: input.oib,
-                                iznos_prije_poreza: parseFloat(input.iznos_prije_poreza),
-                                porez: parseFloat(input.porez),
-                                iznos_poreza: iznosPoreza,
-                                cijena_s_porezom: cijenaSPorezom
-                            })
-                    }>Podnesi račun</button>
-                </Link> */}
                 <Link to="/"><button>Odustani</button></Link>
             </div>
         </div>
