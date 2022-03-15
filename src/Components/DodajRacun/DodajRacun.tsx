@@ -3,9 +3,13 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../../State/actionCreators"
+import store from "../../State/store";
 import "./DodajRacun.scss"
 
 const DodajRacun = () => {
+
+    //Izračun rednog broja
+    let rn = store.getState().reducer.slice(-1)[0]
 
     const dispatch = useDispatch()
     const { dodajRacun } = bindActionCreators(actionCreators, dispatch)
@@ -116,7 +120,7 @@ const DodajRacun = () => {
                         <button onClick={() => dodajRacun({
                             id: Date.now(),
                             broj_racuna: input.broj_racuna,
-                            redni_broj_racuna: 55,
+                            redni_broj_racuna: rn.redni_broj_racuna + 1,
                             smjer: (document.querySelector('input[name="smjer"]:checked') as HTMLInputElement).value.toString(),
                             datum_racuna: dateStart,
                             rok_placanja: dateEnd,
