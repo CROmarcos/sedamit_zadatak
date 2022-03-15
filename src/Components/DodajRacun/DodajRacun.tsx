@@ -129,8 +129,8 @@ const DodajRacun = () => {
                             oib: input.oib,
                             iznos_prije_poreza: parseFloat(input.iznos_prije_poreza),
                             porez: parseFloat(input.porez),
-                            iznos_poreza: input.iznos_poreza,
-                            cijena_s_porezom: input.cijena_s_porezom
+                            iznos_poreza: parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100,
+                            cijena_s_porezom: parseFloat(input.iznos_prije_poreza) + (parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100)
                         })
                         }>Podnesi račun</button>
                     </Link>
