@@ -10,8 +10,6 @@ const DodajRacun = () => {
     const dispatch = useDispatch()
     const { dodajRacun } = bindActionCreators(actionCreators, dispatch)
 
-    const [iznosPoreza, setIznosPoreza] = useState(0)
-    const [cijenaSPorezom, setCijenaSPorezom] = useState(0)
     const [iznosPorezaText, setIznos] = useState('')
     const [cijenaSPorezomText, setCijena] = useState('')
 
@@ -28,8 +26,10 @@ const DodajRacun = () => {
         naziv_partnera: "",
         adresa_partnera: "",
         oib: '',
-        iznos_prije_poreza: "",
-        porez: ""
+        iznos_prije_poreza: '',
+        porez: '',
+        iznos_poreza: 0,
+        cijena_s_porezom: 0
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,12 +75,11 @@ const DodajRacun = () => {
     }
 
     function izracunajPorez() {
-        let cijena = parseFloat((document.getElementById("cijena") as HTMLInputElement).value)
-        setIznosPoreza(parseFloat((document.getElementById("porez") as HTMLInputElement).value) * cijena / 100)
-        setCijenaSPorezom(cijena + iznosPoreza)
-        setIznos("Iznos poreza: " + iznosPoreza.toString() + " kn")
-        setCijena("Ukupan iznos: " + cijenaSPorezom.toString() + " kn")
-        console.log(cijenaSPorezom)
+        input.iznos_poreza = parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100
+        input.cijena_s_porezom = parseFloat(input.iznos_prije_poreza) + input.iznos_poreza
+        setIznos("Iznos poreza: " + input.iznos_poreza.toString() + " kn")
+        setCijena("Ukupan iznos: " + input.cijena_s_porezom.toString() + " kn")
+        console.log(input.cijena_s_porezom)
     }
 
     return (
@@ -126,8 +125,8 @@ const DodajRacun = () => {
                             oib: input.oib,
                             iznos_prije_poreza: parseFloat(input.iznos_prije_poreza),
                             porez: parseFloat(input.porez),
-                            iznos_poreza: iznosPoreza,
-                            cijena_s_porezom: cijenaSPorezom
+                            iznos_poreza: input.iznos_poreza,
+                            cijena_s_porezom: input.cijena_s_porezom
                         })
                         }>Podnesi račun</button>
                     </Link>
