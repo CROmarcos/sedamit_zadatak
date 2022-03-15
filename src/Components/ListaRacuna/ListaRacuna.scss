@@ -12,6 +12,15 @@
         border: none;
         cursor: pointer;
     }
+
+    &__opis {
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        label {
+            font-weight: bold;
+        }
+    }
 }
 
 th {
