@@ -10,7 +10,6 @@ import "./DodajRacun.scss"
 const DodajRacun = () => {
     const { id } = useParams()
     let naslov = (id) ? "Uredi račun br. " + id.toString() : "Napravi novi račun"
-    console.log(id)
 
     //Izračun rednog broja
     let rn = store.getState().reducer.slice(-1)[0]
@@ -27,17 +26,42 @@ const DodajRacun = () => {
     //Datum roka plaćanja
     const [dateEnd, setDateEnd] = useState(new Date())
 
+    let BrojRacuna = ''
+    let Smjer = ''
+    let NazivPartnera = ''
+    let AdresaPartnera = ''
+    let Oib = ''
+    let IznosPrijePoreza = ''
+    let Porez = ''
+    let IznosPoreza = 0
+    let CijenaSPorezom = 0
+
+    if (id) {
+        let racun = store.getState().reducer.find(x => x.id === parseInt(id))
+        if (racun) {
+            //Ne mogu se naknadno mijenjati id, smjer i redni broj računa
+            BrojRacuna = racun.broj_racuna
+            Smjer = racun.smjer.toString()
+            NazivPartnera = racun.naziv_partnera
+            if (racun.adresa_partnera) AdresaPartnera = racun.adresa_partnera
+            if (racun.oib) Oib = racun.oib
+            IznosPrijePoreza = racun.iznos_prije_poreza.toString()
+            if (racun.porez) Porez = racun.porez.toString()
+            if (racun.iznos_poreza) IznosPoreza = racun.iznos_poreza
+            CijenaSPorezom = racun.cijena_s_porezom
+        }
+    }
+
     const [input, setInput] = useState({
-        broj_racuna: "",
-        redni_broj_racuna: "",
-        smjer: "",
-        naziv_partnera: "",
-        adresa_partnera: "",
-        oib: '',
-        iznos_prije_poreza: '',
-        porez: '',
-        iznos_poreza: 0,
-        cijena_s_porezom: 0
+        broj_racuna: BrojRacuna,
+        smjer: Smjer,
+        naziv_partnera: NazivPartnera,
+        adresa_partnera: AdresaPartnera,
+        oib: Oib,
+        iznos_prije_poreza: IznosPrijePoreza,
+        porez: Porez,
+        iznos_poreza: IznosPoreza,
+        cijena_s_porezom: CijenaSPorezom
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,7 +122,7 @@ const DodajRacun = () => {
                     <div className="Input"><label>Broj računa: </label><input type="text" name="broj_racuna" value={input.broj_racuna} onChange={handleChange} /><span>*</span></div>
                     <div className="Input"><label>Poslovni partner: </label><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /><span>*</span></div>
                     <div className="Input"><label>Adresa poslovnog partnera: </label><input type="text" name="adresa_partnera" value={input.adresa_partnera} onChange={handleChange} /></div>
-                    <div className="Input">
+                    <div className="Input" id="rb-input">
                         <input className="RadioButton" type="radio" id="ulazno" name="smjer" value="ulazni račun" onClick={prikaziOib} defaultChecked /><label>Ulazni račun</label>
                         <input className="RadioButton" type="radio" id="izlazno" name="smjer" value="izlazni račun" onClick={sakrijOib} /><label>Izlazni račun</label>
                     </div>
