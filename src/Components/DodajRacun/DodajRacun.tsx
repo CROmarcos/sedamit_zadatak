@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../../State/actionCreators"
 import store from "../../State/store";
+import Naslov from "../Naslov/Naslov";
 import "./DodajRacun.scss"
 
 const DodajRacun = () => {
+    const { id } = useParams()
+    let naslov = (id) ? "Uredi račun br. " + id.toString() : "Napravi novi račun"
+    console.log(id)
 
     //Izračun rednog broja
     let rn = store.getState().reducer.slice(-1)[0]
@@ -88,6 +92,7 @@ const DodajRacun = () => {
 
     return (
         <div>
+            <Naslov naslov={naslov} />
             <div className="Unos">
                 <div className="Unos__stupac left">
                     <div className="Input"><label>Broj računa: </label><input type="text" name="broj_racuna" value={input.broj_racuna} onChange={handleChange} /><span>*</span></div>

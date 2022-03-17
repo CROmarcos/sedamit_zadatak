@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import ListaRacuna from './Components/ListaRacuna/ListaRacuna';
 import Detalji from './Pages/Detalji';
 
 //Pages
@@ -16,6 +15,7 @@ function App() {
           <Route path='/' element={Pocetna()} />
           <Route path='/noviracun' element={NoviRacun()} />
           <Route path='/detalji/:id' element={Detalji()} />
+          <Route path='/uredi/:id' element={NoviRacun()} />
         </Routes>
     </div>
   );
