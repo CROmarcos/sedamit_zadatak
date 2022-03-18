@@ -15,7 +15,7 @@ const DodajRacun = () => {
     let rn = store.getState().reducer.slice(-1)[0]
 
     const dispatch = useDispatch()
-    const { dodajRacun } = bindActionCreators(actionCreators, dispatch)
+    const { dodajRacun, urediRacun } = bindActionCreators(actionCreators, dispatch)
 
     const [iznosPorezaText, setIznos] = useState('')
     const [cijenaSPorezomText, setCijena] = useState('')
@@ -36,6 +36,12 @@ const DodajRacun = () => {
     let IznosPoreza = 0
     let CijenaSPorezom = 0
 
+    //Za uređivanje računa
+    let redniBroj = 0
+    let datumPocetka = new Date()
+    let datumRoka = new Date()
+    let rokPostavljen = false
+
     if (id) {
         let racun = store.getState().reducer.find(x => x.id === parseInt(id))
         if (racun) {
@@ -49,6 +55,12 @@ const DodajRacun = () => {
             if (racun.porez) Porez = racun.porez.toString()
             if (racun.iznos_poreza) IznosPoreza = racun.iznos_poreza
             CijenaSPorezom = racun.cijena_s_porezom
+            datumPocetka = racun.datum_racuna
+            if (racun.rok_placanja) {
+                datumRoka = racun.rok_placanja
+                rokPostavljen = true
+            }
+            redniBroj = racun.redni_broj_racuna
         }
     }
 
@@ -100,6 +112,7 @@ const DodajRacun = () => {
         if (dateStart > dt) {
             alert("Datum zatvaranja ugovora ne može biti prije datuma otvaranja!");
             (document.getElementById("dt-end") as HTMLInputElement).value = ''
+            setDateEnd(new Date())
         }
         else {
             setDateEnd(dt)
@@ -133,8 +146,14 @@ const DodajRacun = () => {
                     }
                 </div>
                 <div className="Unos__stupac right">
-                    <div className="Input"><label>Datum otvaranja računa: </label><input id="dt-start" className="Datum" type="date" name="datum_racuna" onSelect={dtStart} /><span>*</span></div>
-                    <div className="Input"><label>Rok plaćanja: </label><input id="dt-end" className="Datum" type="date" name="rok_placanja" onSelect={dtEnd} /></div>
+                    {(id) ?
+                        <div className="Input"><p>Račun je otvoren na datum {datumPocetka.toLocaleDateString()}</p></div> :
+                        <div className="Input"><label>Datum otvaranja računa: </label><input id="dt-start" className="Datum" type="date" name="datum_racuna" onSelect={dtStart} /><span>*</span></div>
+                    }
+                    {(rokPostavljen) ?
+                        <div className="Input"><p>Rok plaćanja postavljen je na datum {datumRoka.toLocaleDateString()}</p></div> :
+                        <div className="Input"><label>Rok plaćanja: </label><input id="dt-end" className="Datum" type="date" name="rok_placanja" onSelect={dtEnd} /></div>
+                    }
                     <div className="Input"><label>Iznos prije poreza (kn): </label><input id="cijena" type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /><span>*</span></div>
                     <div className="Input"><label>Porez (%): </label><input id="porez" type="text" name="porez" value={input.porez} onChange={handleChange} /></div>
                 </div>
@@ -150,7 +169,7 @@ const DodajRacun = () => {
                     <button onClick={() => alert("Niste ispunili vrijednosti označene znakom *!")}>Podnesi račun</button>
                     :
                     <Link to="/">
-                        <button onClick={() => dodajRacun({
+                        <button onClick={() => (!id) ? dodajRacun({
                             id: Date.now(),
                             broj_racuna: input.broj_racuna,
                             redni_broj_racuna: rn.redni_broj_racuna + 1,
@@ -164,7 +183,22 @@ const DodajRacun = () => {
                             porez: parseFloat(input.porez),
                             iznos_poreza: parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100,
                             cijena_s_porezom: parseFloat(input.iznos_prije_poreza) + (parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100)
-                        })
+                        }) :
+                            urediRacun({
+                                id: parseInt(id),
+                                broj_racuna: input.broj_racuna,
+                                redni_broj_racuna: redniBroj,
+                                smjer: input.smjer,
+                                datum_racuna: datumPocetka,
+                                rok_placanja: datumRoka,
+                                naziv_partnera: input.naziv_partnera,
+                                adresa_partnera: input.adresa_partnera,
+                                oib: input.oib,
+                                iznos_prije_poreza: parseFloat(input.iznos_prije_poreza),
+                                porez: parseFloat(input.porez),
+                                iznos_poreza: parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100,
+                                cijena_s_porezom: parseFloat(input.iznos_prije_poreza) + (parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100)
+                            })
                         }>Podnesi račun</button>
                     </Link>
                 }
