@@ -3,16 +3,17 @@
     overflow: hidden;
 
     &__stupac {
-        width: 50%;
+        width: 35%;
         margin: 0;
-        justify-items: right;
+        text-align: right;
     }
 
     &__porez {
         width: 400px;
         height: 100px;
-        background-color: bisque;
-        border: 0.5px solid black;
+        background-color: rgb(252, 246, 246);
+        border: 2px solid rgb(28, 7, 124);
+        border-radius: 2px;
         margin: auto;
         margin-bottom: 25px;
     }
@@ -27,14 +28,18 @@
     margin-right: 30px;
     margin-bottom: 20px;
     align-self: right;
+    padding-right: 0;
 }
 
 .left {
     float: left;
+    margin-left: 10%;
+    margin-right: 5%;
 }
 
 .right {
     float: right;
+    margin-right: 15%;
 }
 
 .RadioButton {
@@ -52,9 +57,17 @@ input {
     width: 250px;
     height: 30px;
     margin-bottom: 10px;
+    text-align: center;
+    background-color: rgb(252, 246, 246);
+    border: 1.5px solid rgb(28, 7, 124);
     border-radius: 5px;
 }
 
 .Datum {
     width: 150px;
+}
+
+span {
+    font-weight: bold;
+    margin-right: 5px;
 }

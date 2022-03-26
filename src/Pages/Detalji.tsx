@@ -6,7 +6,7 @@ const Detalji = () => {
         <div>
             <PopisDetalja />
             <Link to="/">
-                <button>Vrati se natrag</button>
+                <button className="naviBtn">Vrati se natrag</button>
             </Link>
         </div>
     )

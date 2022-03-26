@@ -8,7 +8,7 @@ const Pocetna = () => {
             <Naslov naslov="Početna stranica" />
             <ListaRacuna />
             <Link to="/noviracun">
-                <button>Dodaj novi račun</button>
+                <button className="naviBtn">Dodaj novi račun</button>
             </Link>
         </div>
     )

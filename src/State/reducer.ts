@@ -20,7 +20,7 @@ const initialState: IRacun["racuni"][] = [
         cijena_s_porezom: 1120
     }, {
         id: 2527,
-        broj_racuna: "test 01",
+        broj_racuna: "br. 2",
         redni_broj_racuna: 2,
         smjer: "ulazni račun",
         datum_racuna: new Date('May 05, 2021'),
@@ -34,7 +34,7 @@ const initialState: IRacun["racuni"][] = [
         cijena_s_porezom: 2500
     }, {
         id: 2926,
-        broj_racuna: "test 03",
+        broj_racuna: "test 007",
         redni_broj_racuna: 3,
         smjer: "izlazni račun",
         datum_racuna: new Date('May 14, 2021'),

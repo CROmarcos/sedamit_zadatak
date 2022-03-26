@@ -39,15 +39,21 @@
 }
 
 button {
-  width: 120px;
-  height: 30px;
+  width: 170px;
+  height: 40px;
+  cursor: pointer;
   margin: 10px;
   background-color: azure;
   border-radius: 5px;
-  border: 2px solid blue;
+  border: 2px solid rgb(28, 7, 124);
 }
 
-iframe
-{
-    display: none;
+.naviBtn {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 13pt;
+}
+
+iframe {
+  display: none;
 }

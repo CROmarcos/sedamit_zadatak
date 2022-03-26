@@ -86,7 +86,7 @@ const ListaRacuna = () => {
                             <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.smjer}</button></Link></td>
                             <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.datum_racuna.toLocaleDateString()}</button></Link></td>
                             <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.naziv_partnera}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.cijena_s_porezom} kn</button></Link></td>
+                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.cijena_s_porezom.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</button></Link></td>
                             <td>
                                 <Link to={`/uredi/${racun.id}`}><button className="Lista--btn">Uredi</button></Link>
                                 <button className="Lista--btn" onClick={() => { obrisiRacun(racun.id); }}>Obriši</button>
@@ -96,7 +96,7 @@ const ListaRacuna = () => {
                 </tbody>
             </table>
             <div className="Lista__opis">
-                <label>Ukupan iznos računa: </label><span>{sumaRacuna} kn</span>
+                <label>Ukupan iznos računa: </label><span>{sumaRacuna.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</span>
             </div>
         </>
     )

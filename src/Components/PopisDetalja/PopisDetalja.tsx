@@ -20,10 +20,10 @@ const PopisDetalja = () => {
                         <div className="Popis__red"><label className="Popis__label">Naziv partnera: </label><span>{racun.naziv_partnera}</span></div>
                         {racun.adresa_partnera ? <div className="Popis__red"><label className="Popis__label">Adresa partnera: </label><span>{racun.adresa_partnera}</span></div> : <></>}
                         {racun.oib ? <div className="Popis__red"><label className="Popis__label">OIB: </label><span>{racun.oib}</span></div> : <></>}
-                        <div className="Popis__red"><label className="Popis__label">Iznos prije poreza: </label><span>{racun.iznos_prije_poreza} kn</span></div>
-                        <div className="Popis__red"><label className="Popis__label">Porez: </label><span>{racun.porez ? racun.porez : "0"} %</span></div>
-                        <div className="Popis__red"><label className="Popis__label">Iznos poreza: </label><span>{racun.iznos_poreza ? racun.iznos_poreza : "0"} kn</span></div>
-                        <div className="Popis__red"><label className="Popis__label">Ukupna cijena: </label><span>{racun.cijena_s_porezom} kn</span></div>
+                        <div className="Popis__red"><label className="Popis__label">Iznos prije poreza: </label><span>{racun.iznos_prije_poreza.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</span></div>
+                        <div className="Popis__red"><label className="Popis__label">Porez: </label><span>{racun.porez ? racun.porez.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) : "0"} %</span></div>
+                        <div className="Popis__red"><label className="Popis__label">Iznos poreza: </label><span>{racun.iznos_poreza ? racun.iznos_poreza.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) : "0"} kn</span></div>
+                        <div className="Popis__red"><label className="Popis__label">Ukupna cijena: </label><span>{racun.cijena_s_porezom.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</span></div>
                     </div>
                 </div>
             )

@@ -122,8 +122,8 @@ const DodajRacun = () => {
     function izracunajPorez() {
         input.iznos_poreza = parseFloat(input.porez) * parseFloat(input.iznos_prije_poreza) / 100
         input.cijena_s_porezom = parseFloat(input.iznos_prije_poreza) + input.iznos_poreza
-        setIznos("Iznos poreza: " + input.iznos_poreza.toString() + " kn")
-        setCijena("Ukupan iznos: " + input.cijena_s_porezom.toString() + " kn")
+        setIznos("Iznos poreza: " + input.iznos_poreza.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " kn")
+        setCijena("Ukupan iznos: " + input.cijena_s_porezom.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " kn")
         console.log(input.cijena_s_porezom)
     }
 
@@ -132,8 +132,8 @@ const DodajRacun = () => {
             <Naslov naslov={naslov} />
             <div className="Unos">
                 <div className="Unos__stupac left">
-                    <div className="Input"><label>Broj računa: </label><input type="text" name="broj_racuna" value={input.broj_racuna} onChange={handleChange} /><span>*</span></div>
-                    <div className="Input"><label>Poslovni partner: </label><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /><span>*</span></div>
+                    <div className="Input"><label>Broj računa: </label><span>*</span><input type="text" name="broj_racuna" value={input.broj_racuna} onChange={handleChange} /></div>
+                    <div className="Input"><label>Poslovni partner: </label><span>*</span><input type="text" name="naziv_partnera" value={input.naziv_partnera} onChange={handleChange} /></div>
                     <div className="Input"><label>Adresa poslovnog partnera: </label><input type="text" name="adresa_partnera" value={input.adresa_partnera} onChange={handleChange} /></div>
                     {(id) ? <></> :
                         <>
@@ -148,13 +148,13 @@ const DodajRacun = () => {
                 <div className="Unos__stupac right">
                     {(id) ?
                         <div className="Input"><p>Račun je otvoren na datum {datumPocetka.toLocaleDateString()}</p></div> :
-                        <div className="Input"><label>Datum otvaranja računa: </label><input id="dt-start" className="Datum" type="date" name="datum_racuna" onSelect={dtStart} /><span>*</span></div>
+                        <div className="Input"><label>Datum otvaranja računa: </label><span>*</span><input id="dt-start" className="Datum" type="date" name="datum_racuna" onSelect={dtStart} /></div>
                     }
                     {(rokPostavljen) ?
                         <div className="Input"><p>Rok plaćanja postavljen je na datum {datumRoka.toLocaleDateString()}</p></div> :
                         <div className="Input"><label>Rok plaćanja: </label><input id="dt-end" className="Datum" type="date" name="rok_placanja" onSelect={dtEnd} /></div>
                     }
-                    <div className="Input"><label>Iznos prije poreza (kn): </label><input id="cijena" type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /><span>*</span></div>
+                    <div className="Input"><label>Iznos prije poreza (kn): </label><span>*</span><input id="cijena" type="text" name="iznos_prije_poreza" value={input.iznos_prije_poreza} onChange={handleChange} /></div>
                     <div className="Input"><label>Porez (%): </label><input id="porez" type="text" name="porez" value={input.porez} onChange={handleChange} /></div>
                 </div>
             </div>
@@ -163,13 +163,13 @@ const DodajRacun = () => {
                 <p>{cijenaSPorezomText}</p>
             </div>
             <div className="Unos__actions">
-                <button onClick={izracunajPorez}>Izračunaj porez</button>
+                <button className="naviBtn" onClick={izracunajPorez}>Izračunaj porez</button>
 
                 {(!input.broj_racuna || !input.naziv_partnera || !input.iznos_prije_poreza || !dateStart) ?
-                    <button onClick={() => alert("Niste ispunili vrijednosti označene znakom *!")}>Podnesi račun</button>
+                    <button className="naviBtn" onClick={() => alert("Niste ispunili vrijednosti označene znakom *!")}>Podnesi račun</button>
                     :
                     <Link to="/">
-                        <button onClick={() => (!id) ? dodajRacun({
+                        <button className="naviBtn" onClick={() => (!id) ? dodajRacun({
                             id: Date.now(),
                             broj_racuna: input.broj_racuna,
                             redni_broj_racuna: rn.redni_broj_racuna + 1,
@@ -202,7 +202,7 @@ const DodajRacun = () => {
                         }>Podnesi račun</button>
                     </Link>
                 }
-                <Link to="/"><button>Odustani</button></Link>
+                <Link to="/"><button className="naviBtn">Odustani</button></Link>
             </div>
         </div>
     )
