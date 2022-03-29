@@ -64,37 +64,45 @@ const ListaRacuna = () => {
 
     return (
         <>
-            <table className="Lista">
-                <thead>
-                    <tr>
-                        {stupci.map((stupac) => {
-                            return (
-                                <th key={stupac.key}>
-                                    {stupac.label} <SortButton columnKey={stupac.key} onClick={() => changeSort(stupac.key)} sortOrder={sortOrder} sortKey={sortKey} />
-                                </th>
-                            )
-                        })}
-                        <th>Dodatne aktivnosti</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortedData().map(racun =>
-                        <tr key={racun.id}>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.id}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.broj_racuna}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.redni_broj_racuna}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.smjer}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.datum_racuna.toLocaleDateString()}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.naziv_partnera}</button></Link></td>
-                            <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.cijena_s_porezom.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</button></Link></td>
-                            <td>
-                                <Link to={`/uredi/${racun.id}`}><button className="Lista--btn">Uredi</button></Link>
-                                <button className="Lista--btn" onClick={() => { obrisiRacun(racun.id); }}>Obriši</button>
-                            </td>
+            <div className="Lista--wrapper">
+                <table className="Lista">
+                    <thead>
+                        <tr>
+                            {stupci.map((stupac) => {
+                                return (
+                                    <th key={stupac.key}>
+                                        {stupac.label} <SortButton columnKey={stupac.key} onClick={() => changeSort(stupac.key)} sortOrder={sortOrder} sortKey={sortKey} />
+                                    </th>
+                                )
+                            })}
+                            <th>Dodatne aktivnosti</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortedData().map(racun =>
+                            <tr key={racun.id}>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.id}</button></Link></td>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.broj_racuna}</button></Link></td>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.redni_broj_racuna}</button></Link></td>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.smjer}</button></Link></td>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.datum_racuna.toLocaleDateString()}</button></Link></td>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.naziv_partnera}</button></Link></td>
+                                <td><Link to={`/detalji/${racun.id}`}><button className="Lista__link">{racun.cijena_s_porezom.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</button></Link></td>
+                                <td>
+                                    <div className="Lista__actions">
+                                        <div className="Lista__actions-side">
+                                            <Link to={`/uredi/${racun.id}`}><button className="Lista--btn">Uredi</button></Link>
+                                        </div>
+                                        <div className="Lista__actions-side">
+                                            <button className="Lista--btn" onClick={() => { obrisiRacun(racun.id); }}>Obriši</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
             <div className="Lista__opis">
                 <label>Ukupan iznos računa: </label><span>{sumaRacuna.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })} kn</span>
             </div>

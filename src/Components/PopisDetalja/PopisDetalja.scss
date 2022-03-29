@@ -9,6 +9,11 @@
     border-radius: 10px;
     background-color: rgb(247, 232, 232);
 
+    @media screen and (max-width: 768px) {
+        width: 80%;
+        margin: auto;
+    }
+
     &__red {
         width: 100%;
         margin-bottom: 25px;
