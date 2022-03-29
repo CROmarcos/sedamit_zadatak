@@ -82,3 +82,19 @@ td {
 .reverse {
     transform: rotate(180deg);
 }
+
+::-webkit-scrollbar {
+    height: 15px;
+
+    &-track {
+        background: #dbdbdb31;
+    }
+
+    &-thumb {
+        background: #282c34;
+
+        &:hover {
+            background: rgba(133, 129, 129, 0.356);
+        }
+    }
+}
